@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "CoreServicesVne": {
+    "vnetName": {
       "type": "string",
       "defaultValue": "CoreServicesVnet",
       "metadata": {
@@ -23,14 +23,13 @@
         "description": "Subnet 1 Prefix"
       }
     },
-    "GatewaySubnet": {
+    "subnet1Name": {
       "type": "string",
       "defaultValue": "GatewaySubnet",
       "metadata": {
         "description": "Subnet 1 Name"
       }
     },
-    
     "subnet2Prefix": {
       "type": "string",
       "defaultValue": "10.20.10.0/24",
@@ -38,43 +37,41 @@
         "description": "Subnet 2 Prefix"
       }
     },
-    "SharedServicesSubnet": {
+    "subnet2Name": {
       "type": "string",
       "defaultValue": "SharedServicesSubnet",
       "metadata": {
         "description": "Subnet 2 Name"
       }
     },
-
     "subnet3Prefix": {
-        "type": "string",
-        "defaultValue": "10.20.20.0/24",
-        "metadata": {
-            "description": "Subnet 3 Prefix"
-        }
+      "type": "string",
+      "defaultValue": "10.20.20.0/24",
+      "metadata": {
+        "description": "Subnet 3 Prefix"
+      }
     },
-    "DatabaseSubnet": {
-        "type": "string",
-        "defaultValue": "DatabaseSubnet",
-        "metadata": {
-            "description": "Subnet 3 Name"
-        }
+    "subnet3Name": {
+      "type": "string",
+      "defaultValue": "DatabaseSubnet",
+      "metadata": {
+        "description": "Subnet 3 Name"
+      }
     },
     "subnet4Prefix": {
-        "type": "string",
-        "defaultValue": "10.20.30.0/24",
-        "metadata": {
-            "description": "Subnet 4 Prefix"
-        }
+      "type": "string",
+      "defaultValue": "10.20.30.0/24",
+      "metadata": {
+        "description": "Subnet 4 Prefix"
+      }
     },
-    "PublicWebServiceSubnet": {
-        "type": "string",
-        "defaultValue": "PublicWebServiceSubnet",
-        "metadata": {
-            "description":"Subnet 4 Name"
-        }
+    "subnet4Name": {
+      "type": "string",
+      "defaultValue": "PublicWebServiceSubnet",
+      "metadata": {
+        "description": "Subnet 4 Name"
+      }
     }
-
   },
   "variables": {
     "resourceLocation": "[resourceGroup().location]"
@@ -84,7 +81,7 @@
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2022-09-01",
       "name": "[parameters('vnetName')]",
-      "location": "[variables('resourceLocation')]", 
+      "location": "[variables('resourceLocation')]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
@@ -95,13 +92,33 @@
           {
             "name": "[parameters('subnet1Name')]",
             "properties": {
-              "addressPrefixes": ["[parameters('subnet1Prefix')]"]
+              "addressPrefixes": [
+                "[parameters('subnet1Prefix')]"
+              ]
             }
           },
           {
             "name": "[parameters('subnet2Name')]",
             "properties": {
-              "addressPrefixes": ["[parameters('subnet2Prefix')]"]
+              "addressPrefixes": [
+                "[parameters('subnet2Prefix')]"
+              ]
+            }
+          },
+          {
+            "name": "[parameters('subnet3Name')]",
+            "properties": {
+              "addressPrefixes": [
+                "[parameters('subnet3Prefix')]"
+              ]
+            }
+          },
+          {
+            "name": "[parameters('subnet4Name')]",
+            "properties": {
+              "addressPrefixes": [
+                "[parameters('subnet4Prefix')]"
+              ]
             }
           }
         ]
