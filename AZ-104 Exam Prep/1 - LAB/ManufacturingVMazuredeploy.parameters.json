@@ -11,10 +11,13 @@
             "value": "ManufacturingVM-nic"
         },
         "vmSize": {
-            "value": "Standard_B2s"
+            "value": "Standard_DS1_v2"
         },
         "adminUsername": {
-            "value": "Tbilisi2025%%"
+            "value": "azadmin"
+        },
+  	"adminPassword": {
+            "value": "MySecureP@ssword!"  // Replace with your actual password
         }
 
     }
