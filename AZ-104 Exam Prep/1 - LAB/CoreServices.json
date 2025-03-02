@@ -9,14 +9,14 @@
        "adminPassword": { "type": "securestring", "metadata": { "description": "Admin Password" } }
     },
     "variables": {
-        "virtualNetworkName": "ManufacturingVnet",
-        "nsgName1": "ManufacturingVM-nsg",
-        "PIPName1": "ManufacturingVM-ip",
-        "subnetName": "ManufacturingSystemSubnet",
+        "virtualNetworkName": "CoreServicesVnet",
+        "nsgName1": "testvm1-nsg",
+        "PIPName1": "testvm1-ip",
+        "subnetName": "subnet1",
         "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
         "computeApiVersion": "2018-06-01",
         "networkApiVersion": "2018-08-01",
-        "location": "West Europe"
+        "location": "East US"
     },
     "resources": [
         {
@@ -26,13 +26,13 @@
             "location": "[variables('location')]",
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": ["10.30.0.0/16"]
+                    "addressPrefixes": ["10.20.0.0/16"]
                 },
                 "subnets": [
                     {
                         "name": "[variables('subnetName')]",
                         "properties": {
-                            "addressPrefix": "10.30.0.0/24"
+                            "addressPrefix": "10.20.0.0/24"
                         }
                     }
                 ]
